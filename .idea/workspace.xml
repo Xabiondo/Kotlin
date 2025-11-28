@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43fc0796-cde2-416e-b73d-26417c2c837c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LoginPage/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginPage/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoginPage/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginPage/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/LoginPage/.idea/misc.xml" afterDir="false" />
     </list>
@@ -20,10 +19,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="35nFxarek2BpwT9nfkko6rdrKXo" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +35,6 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main"
