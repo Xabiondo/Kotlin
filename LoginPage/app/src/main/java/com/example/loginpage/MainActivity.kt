@@ -36,10 +36,15 @@ import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.loginpage.ui.theme.LoginPageTheme
 import org.intellij.lang.annotations.JdkConstants
 
@@ -49,19 +54,41 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LoginPageTheme {
+                val navigationController = rememberNavController() ;
+                NavHost(
+                    navController = navigationController ,
+                    startDestination ="pantalla_principal"
 
-                Column (
-                    modifier = Modifier.fillMaxSize()
-                ){
-                    primerTercio(Modifier.weight(3.33f))
-                    segundoTercio(Modifier.weight(5f))
-                    tercerTercio(Modifier.weight(1.7f))
+                ) {
+                    composable("pantalla_principal") {
+                        PrimeraPagina(navigationController)
+
+                    }
+                    composable ("segunda_pantalla") {
+                        SegundaPantalla(navigationController)
+                    }
+
                 }
+
+
+
+
 
 
             }
         }
     }
+}
+@Composable
+fun PrimeraPagina(navController: NavController){
+    Column (
+        modifier = Modifier.fillMaxSize()
+    ){
+        primerTercio(Modifier.weight(3.33f))
+        segundoTercio(Modifier.weight(5f) , navController)
+        tercerTercio(Modifier.weight(1.7f))
+    }
+
 }
 
 @Composable
@@ -89,7 +116,7 @@ fun primerTercio(modifier: Modifier ){
 }
 
 @Composable
-fun segundoTercio(modifier: Modifier){
+fun segundoTercio(modifier: Modifier , navController: NavController){
     var nombre by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember {mutableStateOf(TextFieldValue(""))}
     Column(
@@ -124,6 +151,7 @@ fun segundoTercio(modifier: Modifier){
                 password = it;
             },
             label =  {Text(text = "contraseña")},
+            visualTransformation = PasswordVisualTransformation(),
             placeholder = {Text(text = "contraseña aqui")},
             trailingIcon ={ Icon(
                 painter = painterResource(R.drawable.dragon),
@@ -131,7 +159,9 @@ fun segundoTercio(modifier: Modifier){
 
         )
 
-        Button(onClick = {} ,
+        Button(onClick = {
+            navController.navigate("segunda_pantalla")
+        } ,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
@@ -164,6 +194,27 @@ fun tercerTercio(modifier: Modifier){
             textAlign = TextAlign.Center ,
 
             )
+
+    }
+
+}
+@Composable
+fun SegundaPantalla(navController: NavController){
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally ,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(vertical = 50.dp)
+    ) {
+        Text("hola manin")
+
+        Button(
+            onClick = {
+                navController.navigate("pantalla_principal")
+            }
+        ) {
+            Text("volver login")
+        }
 
     }
 
