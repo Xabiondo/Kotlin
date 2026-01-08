@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MVVM_APP_XABITheme {
-
                 val navController = rememberNavController()
 
                 NavHost(
@@ -38,7 +37,6 @@ class MainActivity : ComponentActivity() {
                     }
                     composable("inicio") {
                         Inicio(navController)
-
                     }
 
                 }

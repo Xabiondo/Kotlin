@@ -13,7 +13,7 @@ class LoginViewModel : ViewModel(){
     var navegarInicio by mutableStateOf(false)
         private set
 
-    
+
 
     fun probarLogin(usuario : String, contraseña : String ): Boolean {
 
