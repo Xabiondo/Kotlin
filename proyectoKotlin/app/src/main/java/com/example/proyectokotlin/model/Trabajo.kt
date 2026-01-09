@@ -1,9 +1,10 @@
-package com.example.proyectokotlin.data.model // Ajusta el paquete si es necesario
+package com.example.proyectokotlin.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-
 
 @Entity(tableName = "tabla_favoritos")
 data class Trabajo(
@@ -18,11 +19,33 @@ data class Trabajo(
     val empresa: String,
 
     @SerializedName("companyLogo")
-    val urlFoto: String?, // Puede venir vacío
+    val urlFoto: String?,
 
     @SerializedName("jobExcerpt")
-    val descripcion: String?, // El resumen
+    val descripcion: String?,
 
-    @SerializedName("annualSalaryMin")
-    val salario: String? // El salario
-)
+
+    @SerializedName("salaryMin")
+    val salaryMin: Int?,
+
+    @SerializedName("salaryMax")
+    val salaryMax: Int?,
+
+    @SerializedName("salaryCurrency")
+    val moneda: String?,
+
+    @ColumnInfo(name = "es_favorito")
+    var esFavorito: Boolean = false
+) {
+
+    val salario: String
+        get() {
+            return if (salaryMin != null && salaryMax != null) {
+                "${'$'}salaryMin - ${'$'}salaryMax ${'$'}moneda"
+            } else if (salaryMin != null) {
+                "${'$'}salaryMin ${'$'}moneda"
+            } else {
+                "Consultar"
+            }
+        }
+}

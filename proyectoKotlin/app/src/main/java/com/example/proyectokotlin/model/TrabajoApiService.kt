@@ -1,6 +1,5 @@
-package com.example.proyectokotlin.data.remote
+package com.example.proyectokotlin.model
 
-import com.example.proyectokotlin.data.model.Trabajo
 import com.google.gson.annotations.SerializedName
 import retrofit2.http.GET
 import retrofit2.http.Query

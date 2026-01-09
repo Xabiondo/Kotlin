@@ -5,7 +5,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,17 +15,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.proyectokotlin.data.model.Trabajo
+import com.example.proyectokotlin.model.Trabajo
 
 @Composable
 fun ItemOferta(
     oferta: Trabajo,
-    onLikeClick: (Boolean) -> Unit
+    isFavorito: Boolean,
+    onLikeClick: () -> Unit
 ) {
-
-    var isLiked by remember { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
@@ -63,7 +60,7 @@ fun ItemOferta(
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         maxLines = 2,
-                        overflow = TextOverflow.Ellipsis // Pone "..." si es muy largo
+                        overflow = TextOverflow.Ellipsis
                     )
                     Text(
                         text = oferta.empresa,
@@ -73,14 +70,11 @@ fun ItemOferta(
                 }
 
 
-                IconButton(onClick = {
-                    isLiked = !isLiked
-                    onLikeClick(isLiked)
-                }) {
+                IconButton(onClick = onLikeClick) {
                     Icon(
-                        imageVector = if (isLiked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        imageVector = if (isFavorito) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = "Like",
-                        tint = if (isLiked) Color.Red else Color.Gray
+                        tint = if (isFavorito) Color.Red else Color.Gray
                     )
                 }
             }
@@ -107,7 +101,7 @@ fun ItemOferta(
                     shape = RoundedCornerShape(4.dp)
                 ) {
                     Text(
-                        text = "💰 ${oferta.salario}",
+                        text = "💰 ${'$'}{oferta.salario}",
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSecondaryContainer
